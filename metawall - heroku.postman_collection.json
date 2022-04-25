@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "f1bfb408-2f69-49b3-9f9a-2a49e568a80e",
-		"name": "metawall - local",
+		"_postman_id": "87d822cf-0da3-4f0d-bbcf-0ce7868d3c87",
+		"name": "metawall - heroku",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -11,15 +11,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:3005/posts",
-					"protocol": "http",
+					"raw": "https://evening-anchorage-75307.herokuapp.com/posts",
+					"protocol": "https",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"evening-anchorage-75307",
+						"herokuapp",
+						"com"
 					],
-					"port": "3005",
 					"path": [
 						"posts"
 					]
@@ -33,18 +31,16 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:3005/posts/6266169ec173d1e19df40c19",
-					"protocol": "http",
+					"raw": "https://evening-anchorage-75307.herokuapp.com/posts/13212",
+					"protocol": "https",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"evening-anchorage-75307",
+						"herokuapp",
+						"com"
 					],
-					"port": "3005",
 					"path": [
 						"posts",
-						"6266169ec173d1e19df40c19"
+						"13212"
 					]
 				}
 			},
@@ -65,15 +61,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:3005/posts",
-					"protocol": "http",
+					"raw": "https://evening-anchorage-75307.herokuapp.com/posts",
+					"protocol": "https",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"evening-anchorage-75307",
+						"herokuapp",
+						"com"
 					],
-					"port": "3005",
 					"path": [
 						"posts"
 					]
@@ -96,15 +90,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:3005/posts/6266169ec173d1e19df40c19",
-					"protocol": "http",
+					"raw": "https://evening-anchorage-75307.herokuapp.com/posts/6266169ec173d1e19df40c19",
+					"protocol": "https",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"evening-anchorage-75307",
+						"herokuapp",
+						"com"
 					],
-					"port": "3005",
 					"path": [
 						"posts",
 						"6266169ec173d1e19df40c19"
@@ -119,15 +111,13 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:3005/posts",
-					"protocol": "http",
+					"raw": "https://evening-anchorage-75307.herokuapp.com/posts",
+					"protocol": "https",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"evening-anchorage-75307",
+						"herokuapp",
+						"com"
 					],
-					"port": "3005",
 					"path": [
 						"posts"
 					]
@@ -141,18 +131,16 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:3005/posts/6265fa9bebb6ef556b45275d",
-					"protocol": "http",
+					"raw": "https://evening-anchorage-75307.herokuapp.com/posts/6266169ec173d1e19df40c19",
+					"protocol": "https",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"evening-anchorage-75307",
+						"herokuapp",
+						"com"
 					],
-					"port": "3005",
 					"path": [
 						"posts",
-						"6265fa9bebb6ef556b45275d"
+						"6266169ec173d1e19df40c19"
 					]
 				}
 			},
