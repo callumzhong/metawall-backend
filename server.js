@@ -1,9 +1,10 @@
+'use strict';
 const http = require('http');
 const mongoose = require('mongoose');
 const DATABASE = require('./config');
+const response = require('./helpers/response');
 const postsRoute = require('./routes/posts');
 const PORT = process.env.PORT || 3005;
-const posts = [];
 mongoose
 	.connect(DATABASE)
 	.then(() => {
@@ -13,7 +14,16 @@ mongoose
 		console.log(`database: 連線失敗 ${error.message}`);
 	});
 const listener = (req, res) => {
-	postsRoute({ req, res, data: posts });
+	Promise.all([postsRoute({ req, res })]).then((arr) => {
+		const isNotFound = arr.some((i) => i === true);
+		if (isNotFound) {
+			response.error({
+				res,
+				status: 404,
+				message: '查無此網站路由',
+			});
+		}
+	});
 };
 
 const server = http.createServer(listener);
