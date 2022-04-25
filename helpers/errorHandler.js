@@ -2,6 +2,7 @@ const HEADERS = require('../constants/headers');
 const CustomizeError = require('../exception/customizeError');
 
 const ErrorHandler = ({ res, error }) => {
+	// mongoose models require error
 	if (error.name === 'ValidationError') {
 		for (key in error.errors) {
 			error.errors[key] = error.errors[key].message;
@@ -29,11 +30,23 @@ const ErrorHandler = ({ res, error }) => {
 		console.log(`errors: ${error.message}`);
 		return;
 	}
+	if (error instanceof SyntaxError) {
+		res.writeHead(400, HEADERS);
+		res.write(
+			JSON.stringify({
+				status: 'ERROR',
+				message: 'JSON syntax error',
+			}),
+		);
+		res.end();
+		console.log(`syntax: ${error.message}`);
+		return;
+	}
 	res.writeHead(400, HEADERS);
 	res.write(
 		JSON.stringify({
 			status: 'ERROR',
-			message: error,
+			message: error.message,
 		}),
 	);
 	res.end();
