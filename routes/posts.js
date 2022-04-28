@@ -50,65 +50,53 @@ const postsRoute = async ({ req, res }) => {
 	}
 
 	if (url.startsWith(PATH + '/') && method === 'GET') {
-		try {
-			const id = url.split('/').pop();
-			const post = await Posts.findOne({ _id: id });
-			if (!post) {
-				throw new CustomizeError('查無此 ID 文章');
-			}
-			response.success({
-				res,
-				status: 200,
-				data: changeTimezone(post),
-			});
-		} catch (error) {
-			ErrorHandler({ res, error });
+		const id = url.split('/').pop();
+		const post = await Posts.findOne({ _id: id });
+		if (!post) {
+			throw new CustomizeError('查無此 ID 文章');
 		}
+		response.success({
+			res,
+			status: 200,
+			data: changeTimezone(post),
+		});
 		return;
 	}
 	if (url === PATH && method === 'POST') {
 		req.on('end', async () => {
-			try {
-				const obj = JSON.parse(body);
-				if (Array.isArray(obj)) {
-					throw new CustomizeError('資料不能是陣列');
-				}
-				await Posts.create(obj);
-				const posts = await Posts.find();
-				response.success({
-					res,
-					status: 200,
-					data: changeTimezone(posts),
-				});
-			} catch (error) {
-				ErrorHandler({ res, error });
+			const obj = JSON.parse(body);
+			if (Array.isArray(obj)) {
+				throw new CustomizeError('資料不能是陣列');
 			}
+			await Posts.create(obj);
+			const posts = await Posts.find();
+			response.success({
+				res,
+				status: 200,
+				data: changeTimezone(posts),
+			});
 		});
 		return;
 	}
 	if (url.startsWith(PATH + '/') && method === 'PATCH') {
 		req.on('end', async () => {
-			try {
-				const obj = JSON.parse(body);
-				if (Array.isArray(obj)) {
-					throw new CustomizeError('資料請傳物件結構');
-				}
-				const id = url.split('/').pop();
-				let post = await Posts.findOne({ _id: id });
-				if (!post) {
-					throw new CustomizeError('查無此 ID 文章');
-				}
-				post = await Posts.findOneAndUpdate({ _id: id }, obj, {
-					returnDocument: 'after',
-				});
-				response.success({
-					res,
-					status: 200,
-					data: changeTimezone(post),
-				});
-			} catch (error) {
-				ErrorHandler({ res, error });
+			const obj = JSON.parse(body);
+			if (Array.isArray(obj)) {
+				throw new CustomizeError('資料請傳物件結構');
 			}
+			const id = url.split('/').pop();
+			let post = await Posts.findOne({ _id: id });
+			if (!post) {
+				throw new CustomizeError('查無此 ID 文章');
+			}
+			post = await Posts.findOneAndUpdate({ _id: id }, obj, {
+				returnDocument: 'after',
+			});
+			response.success({
+				res,
+				status: 200,
+				data: changeTimezone(post),
+			});
 		});
 		return;
 	}
@@ -125,22 +113,18 @@ const postsRoute = async ({ req, res }) => {
 	}
 
 	if (url.startsWith(PATH + '/') && method === 'DELETE') {
-		try {
-			const id = url.split('/').pop();
-			let post = await Posts.findOne({ _id: id });
-			if (!post) {
-				throw new CustomizeError('查無此 ID 文章');
-			}
-			await Posts.deleteOne({ _id: id });
-			const posts = await Posts.find();
-			response.success({
-				res,
-				status: 200,
-				data: changeTimezone(posts),
-			});
-		} catch (error) {
-			ErrorHandler({ res, error });
+		const id = url.split('/').pop();
+		let post = await Posts.findOne({ _id: id });
+		if (!post) {
+			throw new CustomizeError('查無此 ID 文章');
 		}
+		await Posts.deleteOne({ _id: id });
+		const posts = await Posts.find();
+		response.success({
+			res,
+			status: 200,
+			data: changeTimezone(posts),
+		});
 		return;
 	}
 	return true;
