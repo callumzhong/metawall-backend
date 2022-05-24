@@ -1,7 +1,6 @@
 'use strict';
-require('dotenv').config({
-	path: './config.env',
-});
+require('dotenv').config();
+require('./connections/postConn');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const PostConn = require('../connections/postConn');
 
 const PostSchema = new mongoose.Schema(
 	{
@@ -46,6 +45,6 @@ const PostSchema = new mongoose.Schema(
 	},
 );
 
-const Post = PostConn.model('Post', PostSchema);
+const Post = mongoose.model('Post', PostSchema);
 
 module.exports = Post;
