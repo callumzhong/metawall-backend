@@ -5,7 +5,7 @@ module.exports = {
 	createdPost: Joi.object({
 		content: Joi.string().required(),
 		user: JoiObjectId().required(),
-		image: Joi.string().length(),
+		image: Joi.string(),
 		likes: Joi.number(),
 	}),
 	getPagination: Joi.object({

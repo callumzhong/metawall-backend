@@ -23,6 +23,7 @@ app.use('/api', routes);
 
 // swagger api
 app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+
 // error middleware
 app.use(ErrorHandler);
 

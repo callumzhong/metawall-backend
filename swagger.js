@@ -20,7 +20,7 @@ const doc = {
 			_id: '628e36fb3bb323334a0a82c9',
 			createdAt: '2022-05-25T14:02:35.950Z',
 		},
-		PostGetPagination: {
+		PostPagination: {
 			data: [
 				{
 					_id: '628e34707a9f563b8484def7',
@@ -35,9 +35,9 @@ const doc = {
 				},
 			],
 			paging: {
-				currentPage: 11,
+				currentPage: 1,
 				totalPage: 1,
-				hasPre: true,
+				hasPre: false,
 				hasNext: false,
 			},
 		},
