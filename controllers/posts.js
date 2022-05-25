@@ -16,17 +16,19 @@ module.exports = {
     }	*/
 		/* #swagger.parameters['sort'] = {
 				in: 'query',
-				description: '排序 ( arc || desc ) ',
+				description: '排序 ( asc || desc ) ',
     }	*/
-
-		const page = req.query.page || 1;
-		const q = req.query.q || null;
-		const sort = req.query.sort || null;
-
 		/* #swagger.responses[200] = {
-		  	schema: {"$ref": "#/definitions/PostPage"},
-				description: "取得分頁資料" }*/
-		res.status(200).json();
+				schema: {"$ref": "#/definitions/PostPage"},
+				description: "取得分頁資料" 
+		} */
+		const query = {
+			page: req.query.page || 1,
+			q: req.query.q || '',
+			sort: req.query.sort || 'asc',
+		};
+		const pages = await PostHandler.getPagination(query);
+		res.status(200).json(pages);
 	},
 	getOne: (req, res, next) => {
 		/* #swagger.responses[200] = {
@@ -45,12 +47,12 @@ module.exports = {
 				required: true,
 		  	schema: {"$ref": "#/definitions/PostBody"},
 		} */
-		/* #swagger.responses[200] = {
+		/* #swagger.responses[201] = {
 		  	schema: {"$ref": "#/definitions/PostCreated"},
 				description: "新增成功"
 		} */
 		const createdPost = await PostHandler.created(req.body);
-		res.status(200).json({
+		res.status(201).json({
 			status: 'SUCCESS',
 			data: createdPost,
 		});
