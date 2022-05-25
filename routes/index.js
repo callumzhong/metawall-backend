@@ -1,9 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const postRouter = require('./post/post');
 
-router.get('/', function (req, res, next) {
-	// #swagger.ignore = true
-	res.render('index', { title: 'Express' });
-});
+router.use('/posts', postRouter);
 
 module.exports = router;

@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const { JoiObjectId } = require('./helper');
+const { JoiObjectId } = require('../../helpers/validator');
 
 module.exports = {
 	createdPost: Joi.object({

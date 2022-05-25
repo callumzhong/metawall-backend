@@ -6,10 +6,10 @@ const logger = require('morgan');
 const cors = require('cors');
 require('dotenv').config();
 require('./connections/postConn');
-const indexRouter = require('./routes/index');
-const postRouter = require('./routes/post');
+
 const swaggerUi = require('swagger-ui-express');
 const swaggerFile = require('./swagger-output.json');
+const routes = require('./routes');
 const ErrorHandler = require('./middlewares/errorHandler');
 const app = express();
 
@@ -19,10 +19,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/api', routes);
 
-app.use('/', indexRouter);
-app.use('/api/posts', postRouter);
+// swagger api
 app.use('/api-doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+// error middleware
 app.use(ErrorHandler);
 
 module.exports = app;

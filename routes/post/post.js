@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const PostController = require('../controllers/posts');
-const Validator = require('../middlewares/validator');
-const PostSchema = require('../schemas/post');
+const PostController = require('../../controllers/posts');
+const Validator = require('../../middlewares/validator');
+const schema = require('./schema');
 router.get(
 	'/',
-	Validator(PostSchema.getPagination, 'query'),
+	Validator(schema.getPagination, 'query'),
 	PostController.getPagination,
 );
 router.get(
@@ -16,11 +16,7 @@ router.get(
 	 */
 	PostController.getOne,
 );
-router.post(
-	'/',
-	Validator(PostSchema.createdPost, 'body'),
-	PostController.created,
-);
+router.post('/', Validator(schema.createdPost, 'body'), PostController.created);
 router.patch(
 	'/:id',
 	/**
