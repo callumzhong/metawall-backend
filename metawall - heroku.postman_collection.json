@@ -1,0 +1,75 @@
+{
+	"info": {
+		"_postman_id": "87d822cf-0da3-4f0d-bbcf-0ce7868d3c87",
+		"name": "metawall - heroku",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12452992"
+	},
+	"item": [
+		{
+			"name": "取得所有文章",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://polar-anchorage-40924.herokuapp.com/api/posts?sort=asc&q=輸入&page=1",
+					"protocol": "https",
+					"host": [
+						"polar-anchorage-40924",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"posts"
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "asc"
+						},
+						{
+							"key": "q",
+							"value": "輸入"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "新增單筆文章",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\":\"請輸入內容\",\r\n    \"user\":\"628e32cb7e25476fec99ff8d\",\r\n    \"image\":\"https://unsplash.com/photos/gKXKBY-C-Dk\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://polar-anchorage-40924.herokuapp.com/api/posts",
+					"protocol": "https",
+					"host": [
+						"polar-anchorage-40924",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
