@@ -15,7 +15,7 @@ const UserSchema = new mongoose.Schema(
 		},
 		photo: {
 			type: String,
-			default: null,
+			default: '',
 		},
 		createdAt: {
 			type: Date,

@@ -8,7 +8,7 @@ const PostSchema = new mongoose.Schema(
 		},
 		image: {
 			type: String,
-			default: null,
+			default: '',
 		},
 		likes: {
 			type: Number,
