@@ -56,7 +56,8 @@
         "tags": [
           "posts"
         ],
-        "description": "新增貼文",
+        "summary": "新增貼文",
+        "description": "",
         "parameters": [
           {
             "name": "obj",
@@ -194,117 +195,43 @@
           "type": "string",
           "example": "6274caa22a6bd4d1ecd8af05"
         },
-        "name": {
+        "content": {
           "type": "string",
-          "example": "Posted by Name"
+          "example": "貼文內容"
         },
-        "tags": {
-          "type": "array",
-          "example": [
-            "旅遊"
-          ],
-          "items": {
-            "type": "string"
-          }
-        },
-        "type": {
-          "type": "string",
-          "example": "group"
+        "likes": {
+          "type": "number",
+          "example": 0
         },
         "image": {
           "type": "string",
           "example": "https://unsplash.com/photos/gKXKBY-C-Dk"
-        },
-        "content": {
-          "type": "string",
-          "example": "今天去看貓"
-        },
-        "likes": {
-          "type": "number",
-          "example": 99
-        },
-        "comments": {
-          "type": "number",
-          "example": 1
         }
       },
       "required": [
-        "name",
-        "type",
         "content"
       ]
     },
     "PostBody": {
       "type": "object",
       "properties": {
-        "name": {
+        "content": {
           "type": "string",
-          "example": "Posted by Name"
+          "example": "貼文內容"
         },
-        "tags": {
-          "type": "array",
-          "example": [
-            "旅遊"
-          ],
-          "items": {
-            "type": "string"
-          }
-        },
-        "type": {
+        "user": {
           "type": "string",
-          "example": "group"
+          "example": "628e32cb7e25476fec99ff8d"
         },
         "image": {
           "type": "string",
           "example": "https://unsplash.com/photos/gKXKBY-C-Dk"
-        },
-        "content": {
-          "type": "string",
-          "example": "今天去看貓"
-        },
-        "likes": {
-          "type": "number",
-          "example": 99
-        },
-        "comments": {
-          "type": "number",
-          "example": 1
         }
       },
       "required": [
-        "name",
-        "type",
-        "content"
+        "content",
+        "user"
       ]
-    },
-    "PostPage": {
-      "type": "object",
-      "properties": {
-        "data": {
-          "$ref": "#/definitions/Post"
-        },
-        "pagination": {
-          "type": "object",
-          "properties": {
-            "total_pages": {
-              "type": "number",
-              "example": 1
-            },
-            "current_page": {
-              "type": "number",
-              "example": 1
-            },
-            "has_pre": {
-              "type": "boolean",
-              "example": false
-            },
-            "has_next": {
-              "type": "boolean",
-              "example": false
-            }
-          }
-        }
-      }
     }
   }
 }

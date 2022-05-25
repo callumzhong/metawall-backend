@@ -1,15 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const PostController = require('../controllers/posts');
-
-router.get(
-	'/',
-	/**
-	 * #swagger.tags = ['posts']
-	 * #swagger.description = '取得依分頁取得貼文'
-	 */
-	PostController.getPagination,
-);
+const Validator = require('../middlewares/validator');
+const PostSchema = require('../schemas/post');
+router.get('/', PostController.getPagination);
 router.get(
 	'/:id',
 	/**
@@ -20,10 +14,7 @@ router.get(
 );
 router.post(
 	'/',
-	/**
-	 * #swagger.tags = ['posts']
-	 * #swagger.description = '新增貼文'
-	 */
+	Validator(PostSchema.createdPost, 'body'),
 	PostController.created,
 );
 router.patch(

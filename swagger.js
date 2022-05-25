@@ -7,35 +7,18 @@ const doc = {
 	host: 'localhost:3000',
 	schemes: ['http'],
 	definitions: {
-		Post: {
-			_id: '6274caa22a6bd4d1ecd8af05',
-			$name: 'Posted by Name',
-			tags: ['旅遊'],
-			$type: 'group',
-			image: 'https://unsplash.com/photos/gKXKBY-C-Dk',
-			$content: '今天去看貓',
-			likes: 99,
-			comments: 1,
-		},
 		PostBody: {
-			$name: 'Posted by Name',
-			tags: ['旅遊'],
-			$type: 'group',
+			$content: '貼文內容',
+			$user: '628e32cb7e25476fec99ff8d',
 			image: 'https://unsplash.com/photos/gKXKBY-C-Dk',
-			$content: '今天去看貓',
-			likes: 99,
-			comments: 1,
 		},
-		PostPage: {
-			data: {
-				$ref: '#/definitions/Post',
-			},
-			pagination: {
-				total_pages: 1,
-				current_page: 1,
-				has_pre: false,
-				has_next: false,
-			},
+		PostCreated: {
+			content: '123',
+			image: '',
+			likes: 0,
+			user: '628e32cb7e25476fec99ff8d',
+			_id: '628e36fb3bb323334a0a82c9',
+			createdAt: '2022-05-25T14:02:35.950Z',
 		},
 	},
 };
