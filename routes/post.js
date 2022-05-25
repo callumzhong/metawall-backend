@@ -3,7 +3,11 @@ const router = express.Router();
 const PostController = require('../controllers/posts');
 const Validator = require('../middlewares/validator');
 const PostSchema = require('../schemas/post');
-router.get('/', PostController.getPagination);
+router.get(
+	'/',
+	Validator(PostSchema.getPagination, 'query'),
+	PostController.getPagination,
+);
 router.get(
 	'/:id',
 	/**

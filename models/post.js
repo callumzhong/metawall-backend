@@ -16,7 +16,7 @@ const PostSchema = new mongoose.Schema(
 		},
 		user: {
 			type: mongoose.Types.ObjectId,
-			ref: 'User',
+			ref: 'user',
 			required: [true, '請填寫使用者 ID'],
 		},
 		createdAt: {
@@ -30,6 +30,6 @@ const PostSchema = new mongoose.Schema(
 	},
 );
 
-const Post = mongoose.model('Post', PostSchema);
+const Post = mongoose.model('post', PostSchema);
 
 module.exports = Post;
