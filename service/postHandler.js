@@ -5,9 +5,14 @@ module.exports = {
 	getPagination: async (query) => {
 		const sortParams = query.sort === 'asc' ? 'createdAt' : '-createdAt';
 		const q = query.q.trim ? { content: new RegExp(query.q) } : {};
-		const page = parseInt(query.page);
+		let page = parseInt(query.page);
 		const pageSize = 20;
 
+		const postCount = await Post.find(q).count();
+		const totalPages = Math.ceil(postCount / pageSize);
+		if (page > totalPages) {
+			page = totalPages;
+		}
 		const post = await Post.find(q)
 			.populate({
 				path: 'user',
@@ -16,8 +21,6 @@ module.exports = {
 			.sort(sortParams)
 			.skip((page - 1) * pageSize)
 			.limit(pageSize);
-		const postCount = await Post.find(q).count();
-		const totalPages = Math.ceil(postCount / pageSize);
 
 		return {
 			data: post,
