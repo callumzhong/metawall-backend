@@ -19,17 +19,15 @@ const PostSchema = new mongoose.Schema(
 			ref: 'user',
 			required: [true, '請填寫使用者 ID'],
 		},
-		createdAt: {
-			type: Date,
-			default: Date.now,
-			select: false,
-		},
+		createdAt: { type: Date, select: false },
+		updatedAt: { type: Date, select: false },
 	},
 	{
 		versionKey: false,
+		timestamps: true,
 	},
 );
 
-const Post = mongoose.model('post', PostSchema);
+const Post = mongoose.model('Post', PostSchema);
 
 module.exports = Post;
