@@ -4,7 +4,7 @@ const AppError = require('../helpers/appError');
 
 const getPagination = catchAsync(async (req, res, next) => {
 	const query = {
-		page: req.query.page || 1,
+		page: Number(req.query.page) || 1,
 		q: req.query.q || '',
 		sort: req.query.sort || 'asc',
 	};

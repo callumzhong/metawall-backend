@@ -16,7 +16,7 @@ const PostSchema = new mongoose.Schema(
 		},
 		user: {
 			type: mongoose.Types.ObjectId,
-			ref: 'user',
+			ref: 'User',
 			required: [true, '請填寫使用者 ID'],
 		},
 		createdAt: { type: Date, select: false },

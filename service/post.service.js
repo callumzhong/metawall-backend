@@ -1,7 +1,7 @@
 const Post = require('../models/post.model');
 const User = require('../models/user.model');
 
-const calculatePagination = async (query, pageSize = 10) => {
+const calculatePagination = async (query, page, pageSize = 10) => {
 	const count = await Post.find(query).count();
 	const totalPages = Math.ceil(count / pageSize);
 	const result = {
@@ -15,7 +15,7 @@ const calculatePagination = async (query, pageSize = 10) => {
 		return result;
 	}
 
-	result.currentPage = query.page > totalPages ? totalPages : query.page;
+	result.currentPage = page > totalPages ? totalPages : page;
 	result.totalPages = totalPages;
 	result.hasPre = result.currentPage > 1 ? true : false;
 	result.hasNext = result.currentPage >= totalPages ? false : true;
@@ -24,10 +24,11 @@ const calculatePagination = async (query, pageSize = 10) => {
 };
 
 const getPagination = async (query) => {
-	const sortParams = query.sort === 'asc' ? 'createdAt' : '-createdAt';
-	const q = query.q.trim() ? { content: new RegExp(query.q) } : {};
+	const { sort, page, q } = query;
+	const sortParams = sort === 'asc' ? 'createdAt' : '-createdAt';
+	const filter = q.trim() ? { content: new RegExp(q) } : {};
 	const pageSize = 10;
-	const pageData = await calculatePagination(q, pageSize);
+	const pageData = await calculatePagination(filter, page, pageSize);
 	const result = {
 		data: [],
 		paging: pageData,
@@ -36,7 +37,7 @@ const getPagination = async (query) => {
 	if (pageData.totalPages === 0) {
 		return result;
 	}
-	const post = await Post.find(q)
+	const post = await Post.find(filter)
 		.populate({
 			path: 'user',
 			select: 'name photo',
