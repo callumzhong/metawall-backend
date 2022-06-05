@@ -1,14 +1,25 @@
-const Validator = (joiSchema, source) => async (req, res, next) => {
-	try {
-		const { error } = await joiSchema.validateAsync(req[source]);
-		if (!error) {
-			return next();
-		}
-		const details = error.details;
-		next(new Error(details.message));
-	} catch (error) {
-		next(error);
+const Joi = require('joi');
+const AppError = require('../helpers/appError');
+const extract = require('../helpers/extract');
+
+const validator = (joiSchema) => (req, res, next) => {
+	const validSchema = extract(joiSchema, ['params', 'query', 'body']);
+	const object = extract(req, Object.keys(validSchema));
+	const { value, error } = Joi.compile(validSchema)
+		.prefs({
+			errors: { label: 'key' },
+			abortEarly: false,
+		})
+		.validate(object);
+
+	if (error) {
+		const message = error.details.map((detail) => detail.message).join(', ');
+		return next(new AppError(400, message));
 	}
+
+	// 避免傳址異動
+	Object.assign(req, value);
+	return next();
 };
 
-module.exports = Validator;
+module.exports = validator;
