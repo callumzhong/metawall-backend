@@ -29,7 +29,7 @@ const getOne = catchAsync(async (req, res, next) => {
 });
 
 const update = catchAsync(async (req, res, next) => {
-	const result = await postService.update(req.body);
+	const result = await postService.update(req.params.id, req.body);
 	if (typeof result === 'string') {
 		throw new AppError(404, result);
 	}

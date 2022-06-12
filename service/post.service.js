@@ -69,12 +69,16 @@ const create = async (data) => {
 	});
 	return post;
 };
-const update = async (data) => {
-	const { id, content, image } = data;
-	const post = await Post.findByIdAndUpdate(id, {
-		content,
-		image,
-	});
+const update = async (id, data) => {
+	const { content, image } = data;
+	const update = {};
+	if (content) {
+		update.content = content;
+	}
+	if (content) {
+		update.image = image;
+	}
+	const post = await Post.findByIdAndUpdate(id, update);
 
 	if (!post) {
 		return '貼文不存在';

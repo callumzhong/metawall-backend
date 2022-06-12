@@ -36,7 +36,6 @@ const update = {
 	}),
 	body: Joi.object({
 		content: Joi.string().required(),
-		id: JoiObjectId().required(),
 		image: Joi.string(),
 	}),
 };
