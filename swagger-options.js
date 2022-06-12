@@ -1,10 +1,7 @@
 const swaggerOptions = {
 	info: {
 		version: '1.0.0',
-		title: 'Albums store',
-		license: {
-			name: 'MIT',
-		},
+		title: 'MetaWall API Server',
 	},
 	security: {
 		BasicAuth: {
@@ -14,7 +11,7 @@ const swaggerOptions = {
 	},
 	baseDir: __dirname,
 	// Glob pattern to find your jsdoc files (multiple patterns can be added in an array)
-	filesPattern: './**/*.js',
+	filesPattern: './routes/*.js',
 	// URL where SwaggerUI will be rendered
 	swaggerUIPath: '/api-docs',
 	// Expose OpenAPI UI
