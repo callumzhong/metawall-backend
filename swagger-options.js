@@ -4,9 +4,10 @@ const swaggerOptions = {
 		title: 'MetaWall API Server',
 	},
 	security: {
-		BasicAuth: {
-			type: 'http',
-			scheme: 'basic',
+		apiKeyAuth: {
+			type: 'apiKey',
+			name: 'authorization',
+			in: 'header',
 		},
 	},
 	baseDir: __dirname,
