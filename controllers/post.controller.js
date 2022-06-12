@@ -42,11 +42,11 @@ const deleteAll = catchAsync(async (req, res, next) => {
 });
 
 const deleteOne = catchAsync(async (req, res, next) => {
-	const post = await postService.deleteOne(req.params.id);
+	const result = await postService.deleteOne(req.params.id);
 	if (!result) {
 		throw new AppError(404, result);
 	}
-	res.status(200).json(post);
+	res.status(200).json(result);
 });
 
 module.exports = {

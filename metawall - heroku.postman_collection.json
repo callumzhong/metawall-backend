@@ -7,15 +7,15 @@
 	},
 	"item": [
 		{
-			"name": "取得所有文章",
+			"name": "取得依分頁全部文章",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://polar-anchorage-40924.herokuapp.com/api/posts?sort=asc&q=輸入&page=1",
+					"raw": "https://week5-node-app.herokuapp.com/api/posts?sort=asc&page=1",
 					"protocol": "https",
 					"host": [
-						"polar-anchorage-40924",
+						"week5-node-app",
 						"herokuapp",
 						"com"
 					],
@@ -30,7 +30,8 @@
 						},
 						{
 							"key": "q",
-							"value": "輸入"
+							"value": "",
+							"disabled": true
 						},
 						{
 							"key": "page",
@@ -42,13 +43,13 @@
 			"response": []
 		},
 		{
-			"name": "新增單筆文章",
+			"name": "新增文章",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"content\":\"請輸入內容\",\r\n    \"user\":\"628e32cb7e25476fec99ff8d\",\r\n    \"image\":\"https://unsplash.com/photos/gKXKBY-C-Dk\"\r\n}",
+					"raw": "{\r\n    \"content\":\"請輸入內容\",\r\n    \"user\":\"629d0c00ba8c8405e4b33fe4\",\r\n    \"image\":\"https://unsplash.com/photos/gKXKBY-C-Dk\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -56,16 +57,91 @@
 					}
 				},
 				"url": {
-					"raw": "https://polar-anchorage-40924.herokuapp.com/api/posts",
+					"raw": "https://week5-node-app.herokuapp.com/api/post",
 					"protocol": "https",
 					"host": [
-						"polar-anchorage-40924",
+						"week5-node-app",
 						"herokuapp",
 						"com"
 					],
 					"path": [
 						"api",
-						"posts"
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除文章",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://week5-node-app.herokuapp.com/api/post/{id}",
+					"protocol": "https",
+					"host": [
+						"week5-node-app",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"post",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "更新文章",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"content\": \"string\",\r\n  \"image\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://week5-node-app.herokuapp.com/api/post/{id}",
+					"protocol": "https",
+					"host": [
+						"week5-node-app",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"post",
+						"{id}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "取得單筆文章",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://week5-node-app.herokuapp.com/api/post/{id}",
+					"protocol": "https",
+					"host": [
+						"week5-node-app",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"post",
+						"{id}"
 					]
 				}
 			},
