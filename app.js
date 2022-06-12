@@ -7,7 +7,10 @@ const logger = require('morgan');
 const cors = require('cors');
 const routes = require('./routes');
 const errorHandler = require('./middleWares/errorHandler');
+const expressJSDocSwagger = require('express-jsdoc-swagger');
+const swaggerOptions = require('./swagger-options');
 const app = express();
+expressJSDocSwagger(app)(swaggerOptions);
 
 process.on('uncaughtException', (err) => {
 	console.error('Uncaughted Exception！');
