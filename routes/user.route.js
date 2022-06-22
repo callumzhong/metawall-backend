@@ -77,7 +77,6 @@ router.post(
  * POST /api/user/sign_in
  * @summary 登入
  * @tags user
- * @security apiKeyAuth
  * @param {signIn} request.body.required
  * @return {object} 200 - success response - application/json
  * @return {object} 400 - Bad request response
@@ -92,7 +91,6 @@ router.post(
  * POST /api/user/sign_up
  * @summary 註冊
  * @tags user
- * @security apiKeyAuth
  * @param {signUp} request.body.required
  * @return {object} 200 - success response - application/json
  * @return {object} 400 - Bad request response

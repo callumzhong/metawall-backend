@@ -1,14 +1,12 @@
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 const Post = require('../models/post.model');
 const User = require('../models/user.model');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 
 const generateSendJWT = (user) => {
 	const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
 		expiresIn: process.env.JWT_EXPIRES_DAY,
 	});
-	user.password = undefined;
-
 	return {
 		token,
 		name: user.name,
@@ -52,9 +50,15 @@ const updateProfile = async ({ userId, email, name }) => {
 	const user = await User.findByIdAndUpdate(userId, update);
 	return user;
 };
+
+const getOne = async (id) => {
+	const user = await User.findById(id);
+	return user;
+};
 module.exports = {
 	signUp,
 	signIn,
 	updatePassword,
 	updateProfile,
+	getOne,
 };

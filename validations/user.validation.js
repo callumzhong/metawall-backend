@@ -1,5 +1,4 @@
 const Joi = require('joi');
-const { JoiObjectId } = require('../helpers/validator');
 
 const signUp = {
 	body: Joi.object({

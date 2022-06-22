@@ -1,8 +1,7 @@
 const jwt = require('jsonwebtoken');
 const AppError = require('../helpers/appError');
 const catchAsync = require('../helpers/catchAsync');
-const User = require('../models/user.model');
-
+const userService = require('../service/user.service');
 const isAuth = catchAsync(async (req, res, next) => {
 	// 確認 token 是否存在
 	let token;
@@ -18,17 +17,8 @@ const isAuth = catchAsync(async (req, res, next) => {
 	}
 
 	// 驗證 token 正確性
-	const decoded = await new Promise((resolve, reject) => {
-		jwt.verify(token, process.env.JWT_SECRET, (err, payload) => {
-			if (err) {
-				reject(err);
-			} else {
-				resolve(payload);
-			}
-		});
-	});
-	const currentUser = await User.findById(decoded.id);
-
+	const decoded = jwt.verify(token, process.env.JWT_SECRET);
+	const currentUser = await userService.getOne(decoded.id);
 	req.user = currentUser;
 	next();
 });
